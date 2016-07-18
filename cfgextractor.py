@@ -73,7 +73,6 @@ def start(filescfg):
     xfield = infiles.readline().strip()
     yfield = infiles.readline().strip()
     pivot = infiles.readline().strip()
-    xdata = infiles.readline().strip()
     ydata = infiles.readline().strip().split(delim)
 
     xchunkmap = readin(xfiles)
@@ -91,7 +90,7 @@ def start(filescfg):
             outdata[col].append('')
             
     for chunk in ychunkmap:
-        if pivot in ychunkmap[chunk]:
+        if pivot in ychunkmap[chunk] and yfield in ychunkmap[chunk]:
             youtdata = ''
             for field in ychunkmap[chunk]:
                 if field in ydata:
