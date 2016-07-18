@@ -57,10 +57,11 @@ def dechunkify(delim, axis, chunkmap, field):
         if field in chunkmap[chunk]:
             values = chunkmap[chunk][field].split(delim)
             for item in values:
+                item = item.strip()
                 if item and item not in axis:
                     axis.append(item)
 
-def start(filescfg,xfield,yfield,pivot,data):
+def start(filescfg):
     xaxis = []
     yaxis = []
 
@@ -69,26 +70,49 @@ def start(filescfg,xfield,yfield,pivot,data):
     infiles = open(filescfg, 'r')
     xfiles = infiles.readline().strip().split(delim)
     yfiles = infiles.readline().strip().split(delim)
+    xfield = infiles.readline().strip()
+    yfield = infiles.readline().strip()
+    pivot = infiles.readline().strip()
+    xdata = infiles.readline().strip()
+    ydata = infiles.readline().strip().split(delim)
 
     xchunkmap = readin(xfiles)
     ychunkmap = readin(yfiles) 
-
+    
     dechunkify(delim, xaxis, xchunkmap, xfield)
+
     dechunkify(delim, yaxis, ychunkmap, yfield)
 
-    print(xaxis)
-    print(yaxis)
+    outdata = []
 
-    return "blah"
+    for col in range(len(xaxis)):
+        outdata.append([])
+        for row in range(len(yaxis)):
+            outdata[col].append('')
+            
+    for chunk in ychunkmap:
+        if pivot in ychunkmap[chunk]:
+            youtdata = ''
+            for field in ychunkmap[chunk]:
+                if field in ydata:
+                    youtdata = youtdata + field + ": " + ychunkmap[chunk][field] + '\n'
+
+            for xidx, x in enumerate(xaxis):
+                for yidx, y in enumerate(yaxis):
+                    if x in ychunkmap[chunk][pivot] and y in ychunkmap[chunk][yfield]:
+                        outdata[xidx][yidx] = youtdata
+                    
+
+
+    infiles.close()
+    output(xaxis, yaxis, outdata)
 
 if __name__ == "__main__":
-    failstring = ("requires 5 arguments: xaxis field, list of files containing xaxis field,"
+    failstring = ("requires 6 arguments: xaxis field, list of files containing xaxis field,"
                 "yaxis field, list of files containing yaxis field, pivot field, and desir"
                 "ed data fields.")
 
-    if len(sys.argv) != 6:
+    if len(sys.argv) != 2:
         print(sys.argv[0] + failstring)
     else:
-        start(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4],sys.argv[5])
-
-output(['a','b','c'],['1','2','3'],[['a1','a2','a3'],['b1','b2','b3'],['c1','c2','c3']])    
+        start(sys.argv[1])   
