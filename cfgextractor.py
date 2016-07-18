@@ -26,10 +26,11 @@ def output(xaxis, yaxis, data):
     wb.save('output.xlsx')
 
 def start(xfield,xfiles,yfield,yfiles,pivot,data):
+    return "blah"
 
-failstring = ("requires 6 arguments: xaxis field, list of files containing xaxis field,
-             yaxis field, list of files containing yaxis field, pivot field, and desir
-             ed data fields.")
+failstring = ("requires 6 arguments: xaxis field, list of files containing xaxis field,"
+             "yaxis field, list of files containing yaxis field, pivot field, and desir"
+             "ed data fields.")
 
 if len(sys.argv) != 7:
     print(sys.argv[0] + failstring)
