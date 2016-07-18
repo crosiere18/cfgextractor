@@ -82,12 +82,7 @@ def start(filescfg):
 
     dechunkify(delim, yaxis, ychunkmap, yfield)
 
-    outdata = []
-
-    for col in range(len(xaxis)):
-        outdata.append([])
-        for row in range(len(yaxis)):
-            outdata[col].append('')
+    outdata = [['']*len(yaxis) for i in range(len(xaxis))]
             
     for chunk in ychunkmap:
         if pivot in ychunkmap[chunk] and yfield in ychunkmap[chunk]:
