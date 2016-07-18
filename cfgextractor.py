@@ -1,42 +1,27 @@
 #!/usr/bin/python3
 
 from openpyxl import Workbook
-from string import ascii_uppercase
-import math
 
-def ArgumentTooLarge(Exception):
-    def __init__(self, value):
-        self.value = value
-    def __str__(self):
-        return repr(self.value)
-
-def xAxisLetter(rowlen):
-    rowletter = ''
-    while rowlen > 26:
-        if rowlen >= 17576:
-            raise ArgumentTooLarge(rowlen)
-        elif rowlen > 676:
-            val = math.floor(rowlen/676 - 1)
-            rowletter += ascii_uppercase[val]
-            rowlen -= (val + 1) * 676
-        else:
-            val = math.floor(rowlen/26 - 1)
-            rowletter += ascii_uppercase[val]
-            rowlen -= (val + 1) * 26
-
-    rowletter += ascii_uppercase[rowlen % 26]
-    return rowletter
-
-def output(filename, sheetname, xaxis, yaxis, data):
+def output(xaxis, yaxis, data):
     wb = Workbook()
 
     ws = wb.active
+    ws.title = 'Main'
 
-    xlen = len(xaxis) + 1
-    ylen = len(yaxis) + 1
+    xlen = len(xaxis) + 2
+    ylen = len(yaxis) + 2
 
-print(xAxisLetter(25))
-print(xAxisLetter(26))
-print(xAxisLetter(27))
-print(xAxisLetter(52))
-print(xAxisLetter(53))
+    for col in range(2, xlen):
+        ws.cell(row = 1, column = col).value = xaxis[col-2]
+        
+    for row in range(2, ylen):
+        ws.cell(row = row, column = 1).value = yaxis[row-2]
+    
+    for cidx, col in enumerate(data):
+        for ridx, cdata in enumerate(col):
+            ws.cell(row=ridx+2,column=cidx+2).value = cdata
+
+
+    wb.save('output.xlsx')
+
+output(['a','b','c'],['1','2','3'],[['a1','a2','a3'],['b1','b2','b3'],['c1','c2','c3']])    
