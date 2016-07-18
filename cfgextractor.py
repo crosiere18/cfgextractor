@@ -107,9 +107,10 @@ def start(filescfg):
     output(xaxis, yaxis, outdata)
 
 if __name__ == "__main__":
-    failstring = ("requires 6 arguments: xaxis field, list of files containing xaxis field,"
-                "yaxis field, list of files containing yaxis field, pivot field, and desir"
-                "ed data fields.")
+    failstring = ("requires 6 arguments in one file: list of input files for x axis (with relative paths"
+                "), list of input files for y axis, x axis field, y axis field, pivot/relation field, an"
+                "d data required from y files. These should be listed in an input file and handed to the"
+                " program ('ex. ./cfgextractor.py infiles.cfg'")
 
     if len(sys.argv) != 2:
         print(sys.argv[0] + failstring)
