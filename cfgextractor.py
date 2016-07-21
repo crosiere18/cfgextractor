@@ -30,27 +30,26 @@ def readin(files):
     chunk = {}
     chunknum = 0 
     for fname in files:
-        cfgfile = open(fname, 'r')
-        
-        for line in cfgfile:
-            line = line.strip()
+        with open(fname, 'r') as cfgfile:
+
+            for line in cfgfile:
+                line = line.strip()
             
-            if not line or line.startswith('#') or line.startswith('define'): continue
+                if not line or line.startswith('#') or line.startswith('define'): continue
             
-            if line.startswith('}'):
-                ret[chunknum] = chunk
-                chunknum += 1
-                chunk = {}
-                continue 
+                if line.startswith('}'):
+                    ret[chunknum] = chunk
+                    chunknum += 1
+                    chunk = {}
+                    continue 
 
-            bits = line.split(None, 1)
+                bits = line.split(None, 1)
 
-            if len(bits) > 1:
-                k, v = bits
-                chunk[k] = v
+                if len(bits) > 1:
+                    k, v = bits
+                    chunk[k] = v
 
-        cfgfile.close()
-    return ret
+        return ret
 
 def dechunkify(delim, axis, chunkmap, field):
     for chunk in chunkmap:
