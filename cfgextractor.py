@@ -31,7 +31,6 @@ def readin(files):
     chunknum = 0 
     for fname in files:
         with open(fname, 'r') as cfgfile:
-
             for line in cfgfile:
                 line = line.strip()
             
@@ -49,7 +48,7 @@ def readin(files):
                     k, v = bits
                     chunk[k] = v
 
-        return ret
+    return ret
 
 def dechunkify(delim, axis, chunkmap, field):
     for chunk in chunkmap:
