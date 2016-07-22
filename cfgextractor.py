@@ -1,21 +1,11 @@
 #!/usr/bin/python3
 
-from openpyxl import Workbook
+import XlsxWriter
 import sys
 
-#Get inputfiles for readin() function
-def getfilenames():
-    cfgfile = open('infiles.cfg', 'r')
-    filenames = ""
 
-    for line in cfgfile:
-        filenames = cfgfile.readline.
 
-    if
-
-#End input section
-
-def output(xaxis, yaxis, data):
+def output(xaxis, data):
     wb = Workbook()
 
     ws = wb.active
@@ -61,15 +51,6 @@ def readin(files):
                     chunk[k] = v
 
     return ret
-
-def dechunkify(delim, axis, chunkmap, field):
-    for chunk in chunkmap:
-        if field in chunkmap[chunk]:
-            values = chunkmap[chunk][field].split(delim)
-            for item in values:
-                item = item.strip()
-                if item and item not in axis:
-                    axis.append(item)
 
 def start(filescfg):
     xaxis = []
