@@ -67,7 +67,7 @@ def start(infiles):
             indata = maptoarrays(headers,mapdata)
 
             addSheetToWorkbook(indata,headers,wb,title)
-            wb.save('output.xlsx')
+    wb.save('output.xlsx')
 #end start function
 
 
@@ -81,3 +81,7 @@ if __name__ == "__main__":
         print(sys.argv[0] + failstring)
     else:
         start(sys.argv[1])
+
+
+def maptoarrays(headers,mapdata):
+            
