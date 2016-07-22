@@ -52,23 +52,24 @@ def readin(files):
 
     return ret
 
-def start(filescfg):
-    xaxis = []
-    yaxis = []
+def start(infiles):
+    wb = xlsxwriter.Workbook('output.xlsx')
 
-    delim = ','
+    with open(infile,'r'):
+        for line in infiles:
+            paramaters = line.strip().split(':')
+            filenames = params[0]
+            headers = params[1]
+            title = params[2]
 
-    infiles = open(filescfg, 'r')
-    with open(filescfg, 'r') as infiles:
-        commandfiles = infiles.readline().strip().split(delim)
-        hostfiles = infiles.readline().strip().split(delim)
+            mapdata = readin(filenames)
+            #must create maptoarraysfunction
+            indata = maptoarrays(headers,mapdata)
 
-        commandchunkmap = readin(commandfiles)
-        hostchunkmap = readin(hostfiles)
+            addSheetToWorkbook(indata,headers,wb,title)
+            wb.save('output.xlsx')
+#end start function
 
-        outdata = [['']*len(yaxis) for i in range(len(xaxis))]
-
-        output(xaxis , data)
 
 if __name__ == "__main__":
     failstring = ("requires 6 arguments in one file: list of input files for x axis (with relative paths"
