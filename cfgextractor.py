@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import XlsxWriter
+import xlsxwriter
 import sys
 
 
@@ -56,7 +56,7 @@ def start(infiles):
     wb = xlsxwriter.Workbook('output.xlsx')
 
     with open(infile,'r'):
-        for line in infiles:
+        for line in infile:
             paramaters = line.strip().split(':')
             filenames = params[0]
             headers = params[1]
@@ -83,5 +83,22 @@ if __name__ == "__main__":
         start(sys.argv[1])
 
 
+
+#for each key in mapdata , output the information as an array
+#by searching through the values.
+#Will have to create a list to store
+
 def maptoarrays(headers,mapdata):
-            
+    #lists
+
+
+    #iterating through mapdata
+    for key in mapdata:
+
+
+
+
+
+
+
+    #how to split that map to easily become array
