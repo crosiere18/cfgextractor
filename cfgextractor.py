@@ -84,16 +84,22 @@ if __name__ == "__main__":
 
 
 
-#for each key in mapdata , output the information as an array
+#for each chunk in mapdata , output the information as an array
 #by searching through the values.
 #Will have to create a list to store
-
+#Will treat a map as an array
 def maptoarrays(headers,mapdata):
-    #lists
+
+    #declare a counter
+
+    for chunk, line in mapdata.items():
+
+        if line in headers:
+            #insert line at position within array
+            #insert the data at other positions delimited with comma
 
 
-    #iterating through mapdata
-    for key in mapdata:
+
 
 
 
