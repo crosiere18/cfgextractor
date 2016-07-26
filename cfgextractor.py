@@ -102,8 +102,10 @@ def maptoarrays(headers,mapdata):
             for x in range(len(line)):
 
                 datalist[][].append(line)
-                #Will need to update the information around hostnames    
+                #Will need to update the information around hostnames
 
+    #returns the 2D list
+    return datalist
 
 """
         if line in headers and line == 'host_name' and line not in datalist:
