@@ -90,21 +90,40 @@ if __name__ == "__main__":
 #Will treat a map as an array
 def maptoarrays(headers,mapdata):
 
-    #declare a counter
+    hostCounter
+    datalist = [[] for x in range (len(headers))]
+
+    for chunk, innermap in mapdata.items():
+
+        for heading, line in innermap.items():
+
+            datalist[].append(heading)
+
+            for x in range(len(line)):
+                
+
+
+"""
+        if line in headers and line == 'host_name' and line not in datalist:
+            for element in line:
+                hostCounter = 0
+                hostCounter ++
+
+                for value in range(hostCounter):
+                    datalist[].append()
+
+
+            for headings in datalist and line not in datalist:
+                datalist[] = datalist.append(line)
+
+        elif line in headers:
+            for headings in datalist:
+
+                datalist[] = datalist.append(line)
 
     for chunk, line in mapdata.items():
+"""
 
-        if line in headers:
-            #insert line at position within array
+
+
             #insert the data at other positions delimited with comma
-
-
-
-
-
-
-
-
-
-
-    #how to split that map to easily become array
