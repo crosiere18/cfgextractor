@@ -100,7 +100,9 @@ def maptoarrays(headers,mapdata):
             datalist[].append(heading)
 
             for x in range(len(line)):
-                
+
+                datalist[][].append(line)
+                #Will need to update the information around hostnames    
 
 
 """
