@@ -94,14 +94,9 @@ def maptoarrays(headers,mapdata):
     datalist = [[] for x in range (len(headers))]
 
     for chunk, innermap in mapdata.items():
-
         for heading, line in innermap.items():
-
-            datalist[].append(heading)
-
-            for x in range(len(line)):
-
-                datalist[][].append(line)
+            for x in range(len(line.split(","))):
+                datalist[header.index(heading)][x].append(line)
                 #Will need to update the information around hostnames
 
     #returns the 2D list
