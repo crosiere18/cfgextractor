@@ -97,7 +97,13 @@ def maptoarrays(headers,mapdata):
         for heading, line in innermap.items():
             for x in range(len(line.split(","))):
                 datalist[header.index(heading)][x].append(line)
-                #Will need to update the information around hostnames
+
+                #following code should be verified before use
+                if len(line.split(",")) > 1:
+                    multiLineHeading = heading #or header?
+                    for dataline in range len(line.split(","))
+                    datalist[header.index(heading != multiLineHeading)][x].append(line)
+
 
     #returns the 2D list
     return datalist
